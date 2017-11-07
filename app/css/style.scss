@@ -1,0 +1,24 @@
+
+//  CONTENT
+
+/*
+    1. header
+    2. footer
+    3. main
+    4. fonts
+*/
+
+@import 'components/variables';
+@import 'components/mixins';
+// fonts
+@import 'components/fonts';
+
+// header
+@import 'components/header';
+// footer
+@import 'components/footer';
+// main
+@import 'components/main';
+
+@import 'components/shame';
+ 
