@@ -39,6 +39,7 @@ npm  install
 - gulp : default command - Rebuild all project files
 - gulp clean : remove files from build folder
 - gulp watch : run local server and detect changes in files from app folder
+- gulp css : optimize and minimize css in build folder
 
 ### Files and folders
 
@@ -49,5 +50,6 @@ npm  install
 ## Features
 - CSS Autoprefixing
 - Automagically compile Sass with libsass
-- Image optimization
+- Image, css, js optimization
 - Errors notification
+- Css, js minimization

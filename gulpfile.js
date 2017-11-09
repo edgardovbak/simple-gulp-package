@@ -19,6 +19,12 @@ var gulp = require('gulp'),
     csslint = require('gulp-csslint'),
     uncss = require('gulp-uncss');
 
+function swallowError (error) {
+    // If you want details of the error in the console
+    console.log(error.toString())
+    this.emit('end');
+}
+
 // local  server
 gulp.task('serve', function() {
 return gulp.src('build')
@@ -45,6 +51,7 @@ gulp.task('fileinclude', function() {
 gulp.task('styles', function() {
   return sass('app/css/style.scss', { style: 'expanded' })
     .pipe(autoprefixer('last 2 version'))
+    .on('error', swallowError)
     .pipe(gulp.dest('build/css'))
     .pipe(notify({ message: 'Styles task complete' }));
 });
@@ -65,9 +72,11 @@ gulp.task('csslinter', function() {
 
 // styles minimization
 gulp.task('cssmin', function() {
-  gulp.src('build/css/*.css')
+  gulp.src(['build/css/*.css', , '!build/css/*.min.css'])
     .pipe(rename({ suffix: '.min' }))
-    .pipe(cssnano())
+    .pipe(cssnano({
+            discardComments: {removeAll: true}
+        }))
     .pipe(gulp.dest('build/css'))
     .pipe(notify({ message: 'Css min task complete' }));
 });
