@@ -17,6 +17,7 @@ var gulp = require('gulp'),
     del = require('del'),
     cssShorthand = require('gulp-shorthand'),
     csslint = require('gulp-csslint'),
+    size  = require('gulp-size'),
     uncss = require('gulp-uncss');
 
 function swallowError (error) {
@@ -59,13 +60,12 @@ gulp.task('styles', function() {
 // styles optimization
 gulp.task('csslinter', function() {
   gulp.src('build/css/*.css')
+
       .pipe(uncss({
               html: ['app/pages/**/*.html','app/js/**/*.js']
       }))
     .pipe(cssShorthand())
     .pipe(csslint())
-    .pipe(csslint.formatter())
-
     .pipe(gulp.dest('build/css'))
     .pipe(notify({ message: 'Css task complete' }));
 });
@@ -73,10 +73,14 @@ gulp.task('csslinter', function() {
 // styles minimization
 gulp.task('cssmin', function() {
   gulp.src(['build/css/*.css', , '!build/css/*.min.css'])
+  .pipe(notify({ message: 'Css size' }))
+  .pipe(size())
     .pipe(rename({ suffix: '.min' }))
     .pipe(cssnano({
             discardComments: {removeAll: true}
         }))
+    .pipe(notify({ message: 'Css min size' }))
+    .pipe(size())
     .pipe(gulp.dest('build/css'))
     .pipe(notify({ message: 'Css min task complete' }));
 });
@@ -85,12 +89,15 @@ gulp.task('cssmin', function() {
 // Scripts
 gulp.task('scripts', function() {
   return gulp.src('app/js/**/*.js')
+    .pipe(size())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(concat('main.js'))
+    .pipe(size())
     .pipe(gulp.dest('build/js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
+    .pipe(size())
     .pipe(gulp.dest('build/js'))
     .pipe(notify({ message: 'Scripts task complete' }));
 });
