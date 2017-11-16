@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Gulp package</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    @@include('includes/header.html')
+
+    <!-- CONTETN -->
+    @@include('includes/content.html', {
+        "name": "Edy006",
+        "age": 12345,
+        "socials": {
+            "fb": "facebook.com/include",
+            "tw": "twitter.com/include"
+        }
+    })
+
+    <!-- FOOTER -->
+    @@include('includes/footer.html')
+
+<!-- <script src="js/main.js"></script> -->
+</body>
+</html>

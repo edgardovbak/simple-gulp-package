@@ -1,12 +1,13 @@
 
 //  CONTENT
 
-/*
-    1. header
-    2. footer
-    3. main
-    4. fonts
-*/
+// /*
+//     header
+//     footer
+//     main
+//     fonts
+//     nav
+// */
 
 @import 'components/variables';
 @import 'components/mixins';
@@ -15,9 +16,12 @@
 
 // header
 @import 'components/header';
+// nav
+@import 'components/nav';
 // footer
 @import 'components/footer';
+
 // main
-@import 'components/main';
+// @import 'components/main';
 
 @import 'components/shame';
